@@ -1,9 +1,5 @@
-﻿using BeHealthBackend.DataAccess.Entities;
-using BeHealthBackend.DTOs.VisitDtoFolder;
-using BeHealthBackend.DTOs.WorkHoursDtoFolder;
-using BeHealthBackend.Services.VisitServices;
+﻿using BeHealthBackend.DTOs.WorkHoursDtoFolder;
 using BeHealthBackend.Services.WorkHoursServices;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BeHealthBackend.Controllers;

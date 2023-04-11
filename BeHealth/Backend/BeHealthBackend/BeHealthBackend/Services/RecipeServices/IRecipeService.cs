@@ -1,9 +1,7 @@
 ﻿using BeHealthBackend.DTOs.RecipeDtoFolder;
 
-namespace BeHealthBackend.Services.RecipeService
+namespace BeHealthBackend.Services.RecipeService;
+public interface IRecipeService
 {
-    public interface IRecipeService
-    {
-        Task<IEnumerable<RecipeDto>> GetIdAsync(int id);
-    }
+    Task<IEnumerable<RecipeDto>> GetIdAsync(int id);
 }

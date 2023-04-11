@@ -1,9 +1,7 @@
 ﻿using BeHealthBackend.DTOs.ReferralDtoFolder;
 
-namespace BeHealthBackend.Services.ReferralService
+namespace BeHealthBackend.Services.ReferralService;
+public interface IReferralService
 {
-    public interface IReferralService
-    {
-        Task<IEnumerable<ReferralDto>> GetIdAsync(int id);
-    }
+    Task<IEnumerable<ReferralDto>> GetIdAsync(int id);
 }

@@ -2,18 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace BeHealthBackend.DataAccess.Entities.Configurations;
-public class DoctorPatientConfiguration : IEntityTypeConfiguration<DoctorPatient>
-{
-    public void Configure(EntityTypeBuilder<DoctorPatient> builder)
-    {
-        //builder.HasData(
-        //    new DoctorPatient
-        //{
-        //    DoctorId = 2,
-        //    PatientId = 4
-        //});
-    }
-}
+
 public class DoctorConfiguration : IEntityTypeConfiguration<Doctor>
 {
     public void Configure(EntityTypeBuilder<Doctor> builder)
@@ -36,11 +25,11 @@ public class DoctorConfiguration : IEntityTypeConfiguration<Doctor>
 
         builder.Property(d => d.FirstName)
             .IsRequired()
-            .HasMaxLength(20);
+            .HasMaxLength(30);
 
         builder.Property(d => d.LastName)
             .IsRequired()
-            .HasMaxLength(30);
+            .HasMaxLength(50);
 
         builder.Property(d => d.PhoneNumber)
             .IsRequired()
@@ -68,29 +57,5 @@ public class DoctorConfiguration : IEntityTypeConfiguration<Doctor>
 
         builder.Property(p => p.PasswordHash)
             .IsRequired();
-
-        //builder.HasData(
-        //    new Doctor
-        //{
-        //    Id = 1,
-        //    AddressId = 5,
-        //    FirstName = "Eugeniusz",
-        //    LastName = "Kamiński",
-        //    Email = "EugeniuszKaminski@dayrep.com",
-        //    PhoneNumber = "519439105",
-        //    Specialist = "Oculist",
-        //    PasswordHash = "azxsdcvfrewq"
-        //},
-        //    new Doctor
-        //{
-        //    Id = 2,
-        //    AddressId = 6,
-        //    FirstName = "Sam",
-        //    LastName = "Kaczyński",
-        //    Email = "SamKaczyński@dayrep.com",
-        //    PhoneNumber = "123432567",
-        //    Specialist = "Cardiologist",
-        //    PasswordHash = "azxsdbfymhsrewq"
-        //    });
     }
 }

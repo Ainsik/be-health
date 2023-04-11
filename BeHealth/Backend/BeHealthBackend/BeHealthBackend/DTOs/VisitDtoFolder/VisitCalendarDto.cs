@@ -1,8 +1,6 @@
-﻿namespace BeHealthBackend.DTOs.VisitDtoFolder
+﻿namespace BeHealthBackend.DTOs.VisitDtoFolder;
+public class VisitCalendarDto
 {
-    public class VisitCalendarDto
-    {
-        public int Day { get; set; }
-        public int Visits { get; set; }
-    }
+    public int Day { get; set; }
+    public int Visits { get; set; }
 }

@@ -1,5 +1,4 @@
-﻿using BeHealthBackend.DataAccess.Entities;
-using BeHealthBackend.DTOs.WorkHoursDtoFolder;
+﻿using BeHealthBackend.DTOs.WorkHoursDtoFolder;
 
 
 namespace BeHealthBackend.Services.WorkHoursServices;

@@ -1,6 +1,5 @@
 ﻿using BeHealthBackend.DTOs.RecipeDtoFolder;
 using BeHealthBackend.Services.RecipeService;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BeHealthBackend.Controllers;

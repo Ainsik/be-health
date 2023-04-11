@@ -1,6 +1,5 @@
 ﻿using BeHealthBackend.DTOs.ReferralDtoFolder;
 using BeHealthBackend.Services.ReferralService;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BeHealthBackend.Controllers;

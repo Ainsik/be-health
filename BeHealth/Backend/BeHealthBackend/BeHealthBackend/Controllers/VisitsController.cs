@@ -1,7 +1,5 @@
-﻿using BeHealthBackend.DataAccess.Entities;
-using BeHealthBackend.DTOs.VisitDtoFolder;
+﻿using BeHealthBackend.DTOs.VisitDtoFolder;
 using BeHealthBackend.Services.VisitServices;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BeHealthBackend.Controllers;

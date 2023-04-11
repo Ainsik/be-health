@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace BeHealthBackend.DataAccess.Entities.Configurations;
 
-public class CertificateConfigutations : IEntityTypeConfiguration<Certificate>
+public class CertificateConfiguration : IEntityTypeConfiguration<Certificate>
 {
     void IEntityTypeConfiguration<Certificate>.Configure(EntityTypeBuilder<Certificate> builder)
     {
