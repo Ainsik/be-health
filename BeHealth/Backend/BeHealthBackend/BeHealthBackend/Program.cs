@@ -1,8 +1,8 @@
-﻿using BeHealthBackend.DataAccess.DbContexts;
-using Microsoft.EntityFrameworkCore;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 using BeHealthBackend.Configurations.Extensions;
+using BeHealthBackend.DataAccess.DbContexts;
 using FluentValidation.AspNetCore;
+using Microsoft.EntityFrameworkCore;
 using Polly;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -49,10 +49,7 @@ var policy = Policy
 
 policy.Execute(() =>
 {
-    if (pendingMigrations.Any())
-    {
-        dbContext.Database.Migrate();
-    }
+    if (pendingMigrations.Any()) dbContext.Database.Migrate();
 });
 
 app.Run();

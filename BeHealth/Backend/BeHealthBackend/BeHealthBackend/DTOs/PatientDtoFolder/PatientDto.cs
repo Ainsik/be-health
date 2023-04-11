@@ -1,6 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿namespace BeHealthBackend.DTOs.PatientDtoFolder;
 
-namespace BeHealthBackend.DTOs.PatientDtoFolder;
 public class PatientDto
 {
     public int Id { get; set; }

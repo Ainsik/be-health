@@ -1,6 +1,5 @@
 ﻿using BeHealthBackend.DTOs.WorkHoursDtoFolder;
 
-
 namespace BeHealthBackend.Services.WorkHoursServices;
 
 public interface IWorkHoursService

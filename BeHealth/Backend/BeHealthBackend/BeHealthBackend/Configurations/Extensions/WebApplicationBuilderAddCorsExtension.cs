@@ -1,4 +1,5 @@
 ﻿namespace BeHealthBackend.Configurations.Extensions;
+
 public static class WebApplicationBuilderAddCorsExtension
 {
     public static WebApplicationBuilder AddCors(this WebApplicationBuilder builder)

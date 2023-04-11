@@ -1,72 +1,72 @@
-﻿using BeHealthBackend.Configurations.Exceptions;
-using Microsoft.AspNetCore.Mvc;
-using System.Net;
+﻿using System.Net;
 using System.Text.Json;
+using BeHealthBackend.Configurations.Exceptions;
+using Microsoft.AspNetCore.Mvc;
 
-namespace BeHealthBackend.Configurations.Middleware
+namespace BeHealthBackend.Configurations.Middleware;
+
+public class ErrorHandlingMiddleware : IMiddleware
 {
-    public class ErrorHandlingMiddleware : IMiddleware
+    private readonly ILogger<ErrorHandlingMiddleware> _logger;
+
+    public ErrorHandlingMiddleware(ILogger<ErrorHandlingMiddleware> logger)
     {
-        private readonly ILogger<ErrorHandlingMiddleware> _logger;
+        _logger = logger;
+    }
 
-        public ErrorHandlingMiddleware(ILogger<ErrorHandlingMiddleware> logger)
+    public async Task InvokeAsync(HttpContext context, RequestDelegate next)
+    {
+        try
         {
-            _logger = logger;
+            await next.Invoke(context);
         }
-        public async Task InvokeAsync(HttpContext context, RequestDelegate next)
+        catch (ForbidException forbidException)
         {
-            try
-            {
-                await next.Invoke(context);
-            }
-            catch (ForbidException forbidException)
-            {
-                context.Response.StatusCode = 403;
-                await context.Response.WriteAsync(forbidException.Message);
-            }
-            catch (Exceptions.BadRequestException badRequestException)
-            {
-                context.Response.StatusCode = 400;
-                await context.Response.WriteAsync(badRequestException.Message);
-            }
-            catch (Exception e)
-            {
-                await HandleExceptionAsync(context, e);
-            }
+            context.Response.StatusCode = 403;
+            await context.Response.WriteAsync(forbidException.Message);
         }
-
-        private async Task HandleExceptionAsync(HttpContext context, Exception exception)
+        catch (BadRequestException badRequestException)
         {
-            HttpStatusCode statusCode = HttpStatusCode.InternalServerError;
-
-            var message = "A problem happened while handling your request.";
-
-            switch (exception)
-            {
-                case NotFoundApiException:
-                    statusCode = HttpStatusCode.NotFound;
-                    message = exception.Message;
-                    break;
-            }
-
-            _logger.LogError(exception, $"An error occurred: {exception.Message}");
-
-            ProblemDetails problemDetails = new()
-            {
-                Status = (int)statusCode,
-                Type = "Error",
-                Title = message
-            };
-
-            var resultJson = JsonSerializer.Serialize(problemDetails);
-
-            var response = context.Response;
-
-            response.StatusCode = (int)statusCode;
-
-            response.ContentType = "application/json";
-
-            await response.WriteAsync(resultJson);
+            context.Response.StatusCode = 400;
+            await context.Response.WriteAsync(badRequestException.Message);
         }
+        catch (Exception e)
+        {
+            await HandleExceptionAsync(context, e);
+        }
+    }
+
+    private async Task HandleExceptionAsync(HttpContext context, Exception exception)
+    {
+        var statusCode = HttpStatusCode.InternalServerError;
+
+        var message = "A problem happened while handling your request.";
+
+        switch (exception)
+        {
+            case NotFoundApiException:
+                statusCode = HttpStatusCode.NotFound;
+                message = exception.Message;
+                break;
+        }
+
+        _logger.LogError(exception, $"An error occurred: {exception.Message}");
+
+        ProblemDetails problemDetails = new()
+        {
+            Status = (int)statusCode,
+            Type = "Error",
+            Title = message
+        };
+
+        var resultJson = JsonSerializer.Serialize(problemDetails);
+
+        var response = context.Response;
+
+        response.StatusCode = (int)statusCode;
+
+        response.ContentType = "application/json";
+
+        await response.WriteAsync(resultJson);
     }
 }

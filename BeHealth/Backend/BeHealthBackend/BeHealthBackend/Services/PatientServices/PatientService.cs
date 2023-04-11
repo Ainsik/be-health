@@ -1,4 +1,8 @@
-﻿using AutoMapper;
+﻿using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using AutoMapper;
+using BeHealthBackend.Authorization;
 using BeHealthBackend.Configurations.Exceptions;
 using BeHealthBackend.DataAccess.DbContexts;
 using BeHealthBackend.DataAccess.Entities;
@@ -8,23 +12,21 @@ using BeHealthBackend.DTOs.PatientDtoFolder;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using BeHealthBackend.Authorization;
 
 namespace BeHealthBackend.Services.PatientServices;
+
 public class PatientService : IPatientService
 {
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IMapper _mapper;
-    private readonly IPasswordHasher<Patient> _passwordHasher;
-    private readonly BeHealthContext _context;
     private readonly AuthenticationSettings _authenticationSettings;
     private readonly IAuthorizationService _authorizationService;
+    private readonly BeHealthContext _context;
+    private readonly IMapper _mapper;
+    private readonly IPasswordHasher<Patient> _passwordHasher;
+    private readonly IUnitOfWork _unitOfWork;
 
     public PatientService(IUnitOfWork unitOfWork, IMapper mapper, IPasswordHasher<Patient> passwordHasher,
-        BeHealthContext context, AuthenticationSettings authenticationSettings, IAuthorizationService authorizationService)
+        BeHealthContext context, AuthenticationSettings authenticationSettings,
+        IAuthorizationService authorizationService)
     {
         _unitOfWork = unitOfWork;
         _mapper = mapper;
@@ -47,7 +49,7 @@ public class PatientService : IPatientService
     public async Task<PatientDto> GetIdAsync(int id)
     {
         var patient = await _unitOfWork.PatientRepository
-            .GetAsync(p => p.Id == id, includeProperties: "Address");
+            .GetAsync(p => p.Id == id, "Address");
 
         if (patient is null)
             throw new NotFoundApiException(nameof(PatientDto), id.ToString());
@@ -117,11 +119,11 @@ public class PatientService : IPatientService
         if (result == PasswordVerificationResult.Failed)
             throw new BadRequestException("Invalid username or password!");
 
-        var claims = new List<Claim>()
+        var claims = new List<Claim>
         {
-            new (ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new (ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
-            new (ClaimTypes.Role, $"{user.Role}")
+            new(ClaimTypes.NameIdentifier, user.Id.ToString()),
+            new(ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
+            new(ClaimTypes.Role, $"{user.Role}")
         };
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_authenticationSettings.JwtKey));

@@ -17,7 +17,8 @@ public class VisitRepository : Repository<Visit>, IVisitRepository
     {
         var visit = await DbSet
             .Where(visit => visit.DoctorId == doctorId)
-            .SingleOrDefaultAsync(visit => visit.VisitDate < endDate && startDate < visit.VisitDate.AddMinutes(visit.Duration));
+            .SingleOrDefaultAsync(visit =>
+                visit.VisitDate < endDate && startDate < visit.VisitDate.AddMinutes(visit.Duration));
         return visit;
     }
 
@@ -25,13 +26,13 @@ public class VisitRepository : Repository<Visit>, IVisitRepository
     {
         var visit = await DbSet
             .Where(visit => visit.PatientId == patientId)
-            .SingleOrDefaultAsync(visit => visit.VisitDate < endDate && startDate < visit.VisitDate.AddMinutes(visit.Duration));
+            .SingleOrDefaultAsync(visit =>
+                visit.VisitDate < endDate && startDate < visit.VisitDate.AddMinutes(visit.Duration));
         return visit;
     }
 
     public async Task<IReadOnlyList<VisitCalendarDto>> GetVisitsForMonth(int doctorId, DateOnly date)
     {
-
         var visitDates = await DbSet
             .Where(visit => visit.DoctorId == doctorId)
             .Where(visit => visit.VisitDate.Month == date.Month && visit.VisitDate.Year == date.Year)

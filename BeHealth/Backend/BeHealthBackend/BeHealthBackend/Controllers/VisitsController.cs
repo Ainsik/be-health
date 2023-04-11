@@ -4,7 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BeHealthBackend.Controllers;
 
-[ApiController, Route("/api/visits")]
+[ApiController]
+[Route("/api/visits")]
 //[Authorize]
 public class VisitsController : ControllerBase
 {
@@ -16,7 +17,7 @@ public class VisitsController : ControllerBase
     }
 
     [HttpGet("{doctorId}")]
-    public async Task<IEnumerable<VisitDTO>> GetAllVisitsForDoctor([FromRoute]int doctorId)
+    public async Task<IEnumerable<VisitDTO>> GetAllVisitsForDoctor([FromRoute] int doctorId)
     {
         var visits = _visitsService.GetVisitsByDoctorIdAsync(doctorId);
         return await visits;
@@ -30,9 +31,10 @@ public class VisitsController : ControllerBase
     }
 
     [HttpGet("calendar/{doctorId}")]
-    public async Task<IEnumerable<VisitCalendarDto>> GetVisitForMonth([FromRoute]int doctorId, [FromQuery]int year, int month)
+    public async Task<IEnumerable<VisitCalendarDto>> GetVisitForMonth([FromRoute] int doctorId, [FromQuery] int year,
+        int month)
     {
-        var visits = await _visitsService.GetVisitsForMonth(doctorId, new(year, month, 1));
+        var visits = await _visitsService.GetVisitsForMonth(doctorId, new DateOnly(year, month, 1));
         return visits;
     }
 
@@ -44,14 +46,14 @@ public class VisitsController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<bool> PutVisit([FromRoute]int id, [FromBody]PutVisitDto visitDto)
+    public async Task<bool> PutVisit([FromRoute] int id, [FromBody] PutVisitDto visitDto)
     {
         var visit = await _visitsService.PutVisit(id, visitDto);
         return visit != null;
     }
 
     [HttpDelete("{id}")]
-    public async Task DeleteVisit([FromRoute]int id)
+    public async Task DeleteVisit([FromRoute] int id)
     {
         await _visitsService.DeleteVisit(id);
     }

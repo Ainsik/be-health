@@ -1,7 +1,10 @@
 ﻿namespace BeHealthBackend.Configurations.Exceptions;
+
 public class NotFoundApiException : ApiException
 {
-    public NotFoundApiException() : base() { }
+    public NotFoundApiException()
+    {
+    }
 
     public NotFoundApiException(string message) : base(message)
     {

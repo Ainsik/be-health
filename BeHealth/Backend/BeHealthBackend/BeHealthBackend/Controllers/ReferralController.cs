@@ -1,10 +1,11 @@
 ﻿using BeHealthBackend.DTOs.ReferralDtoFolder;
-using BeHealthBackend.Services.ReferralService;
+using BeHealthBackend.Services.ReferralServices;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BeHealthBackend.Controllers;
 
-[ApiController, Route("/api/referrals")]
+[ApiController]
+[Route("/api/referrals")]
 //[Authorize(Roles = "Patient")]
 public class ReferralController : ControllerBase
 {
@@ -21,6 +22,4 @@ public class ReferralController : ControllerBase
         var referrals = await _referralService.GetIdAsync(id);
         return Ok(referrals);
     }
-
 }
-

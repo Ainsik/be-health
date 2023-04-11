@@ -1,4 +1,5 @@
-﻿using BeHealthBackend.DataAccess.Entities;
+﻿using AutoMapper;
+using BeHealthBackend.DataAccess.Entities;
 using BeHealthBackend.DTOs.AccountDtoFolder;
 using BeHealthBackend.DTOs.ClinicDtoFolder;
 using BeHealthBackend.DTOs.DoctorDtoFolder;
@@ -6,7 +7,8 @@ using BeHealthBackend.DTOs.PatientDtoFolder;
 using BeHealthBackend.DTOs.VisitDtoFolder;
 
 namespace BeHealthBackend.Configurations.Mapper;
-public class MappingProfile : AutoMapper.Profile
+
+public class MappingProfile : Profile
 {
     public MappingProfile()
     {
@@ -17,8 +19,9 @@ public class MappingProfile : AutoMapper.Profile
 
         CreateMap<CreateDoctorDto, Doctor>()
             .ForMember(d => d.Address,
-                c => c.MapFrom(dto => new Address()
-                    { City = dto.City, Street = dto.Street, PostalCode = dto.PostalCode })).ReverseMap(); ;
+                c => c.MapFrom(dto => new Address
+                    { City = dto.City, Street = dto.Street, PostalCode = dto.PostalCode })).ReverseMap();
+        ;
 
         CreateMap<UpdateDoctorDto, Doctor>();
 
@@ -29,8 +32,9 @@ public class MappingProfile : AutoMapper.Profile
 
         CreateMap<CreatePatientDto, Patient>()
             .ForMember(d => d.Address,
-                c => c.MapFrom(dto => new Address()
-                    { City = dto.City, Street = dto.Street, PostalCode = dto.PostalCode })).ReverseMap(); ;
+                c => c.MapFrom(dto => new Address
+                    { City = dto.City, Street = dto.Street, PostalCode = dto.PostalCode })).ReverseMap();
+        ;
 
         CreateMap<UpdatePatientDto, Patient>();
 
@@ -47,8 +51,8 @@ public class MappingProfile : AutoMapper.Profile
 
         CreateMap<CreateClinicDto, Clinic>();
 
-        CreateMap<Clinic, ClinicDoctorDto> ()
-            .ForMember(dto => dto.Name, c => 
+        CreateMap<Clinic, ClinicDoctorDto>()
+            .ForMember(dto => dto.Name, c =>
                 c.MapFrom(d => d.Doctors.Select(dn => $"{dn.FirstName} {dn.LastName}").FirstOrDefault()));
     }
 }

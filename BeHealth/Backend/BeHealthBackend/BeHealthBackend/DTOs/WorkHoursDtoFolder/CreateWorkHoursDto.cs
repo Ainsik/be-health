@@ -1,4 +1,5 @@
 ﻿namespace BeHealthBackend.DTOs.WorkHoursDtoFolder;
+
 public class CreateWorkHoursDto
 {
     public int DoctorId { get; init; }

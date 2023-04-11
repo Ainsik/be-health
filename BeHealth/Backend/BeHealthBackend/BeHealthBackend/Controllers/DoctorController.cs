@@ -1,12 +1,13 @@
 ﻿using BeHealthBackend.DTOs.DoctorDtoFolder;
-using BeHealthBackend.Services.DoctorServices;
-using Microsoft.AspNetCore.Mvc;
 using BeHealthBackend.DTOs.ImageDto;
+using BeHealthBackend.Services.DoctorServices;
 using BeHealthBackend.Services.FileServices;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BeHealthBackend.Controllers;
 
-[ApiController, Route("/api/doctors")]
+[ApiController]
+[Route("/api/doctors")]
 public class DoctorController : ControllerBase
 {
     private readonly IDoctorService _doctorService;
@@ -26,7 +27,8 @@ public class DoctorController : ControllerBase
     }
 
     [HttpGet("search/{specialization}")]
-    public async Task<ActionResult<IEnumerable<DoctorDto>>> GetDoctorsBySpecializationAsync([FromRoute] string specialization)
+    public async Task<ActionResult<IEnumerable<DoctorDto>>> GetDoctorsBySpecializationAsync(
+        [FromRoute] string specialization)
     {
         var doctors = await _doctorService.GetDoctorsBySpecializationAsync(specialization);
         return Ok(doctors);
@@ -38,6 +40,7 @@ public class DoctorController : ControllerBase
         var doctor = await _doctorService.GetIdAsync(id);
         return Ok(doctor);
     }
+
     [HttpPost("{id}/certificates")]
     public async Task<ActionResult> UploadCertificate([FromRoute] int id, [FromForm] CreateImageDto file)
     {
@@ -45,6 +48,7 @@ public class DoctorController : ControllerBase
         var result = await _doctorService.AddCertificate(filename, id);
         return result ? Ok(filename) : BadRequest();
     }
+
     [HttpGet("{id}/certificates/")]
     public async Task<ActionResult> GetCertificates([FromRoute] int id)
     {

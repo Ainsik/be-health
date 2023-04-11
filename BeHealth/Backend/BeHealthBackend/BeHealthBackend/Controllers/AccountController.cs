@@ -5,7 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BeHealthBackend.Controllers;
 
-[ApiController, Route("/api/account")]
+[ApiController]
+[Route("/api/account")]
 public class AccountController : ControllerBase
 {
     private readonly IDoctorService _doctorService;

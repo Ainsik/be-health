@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BeHealthBackend.Controllers;
 
-[ApiController, Route("/api/workhours")]
+[ApiController]
+[Route("/api/workhours")]
 //[Authorize]
-
 public class WorkHoursController : ControllerBase
 {
     private readonly IWorkHoursService _workHoursService;
@@ -28,6 +28,5 @@ public class WorkHoursController : ControllerBase
     {
         var (workHoursId, workHours) = await _workHoursService.CreateAsync(workHoursDto);
         return Created($"/api/workhours/{workHours.DoctorId}", workHours);
-
     }
 }

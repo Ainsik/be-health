@@ -1,4 +1,5 @@
 ﻿namespace BeHealthBackend;
+
 public class AuthenticationSettings
 {
     public string JwtKey { get; set; }

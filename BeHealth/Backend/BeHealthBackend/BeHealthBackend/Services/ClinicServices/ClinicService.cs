@@ -5,16 +5,18 @@ using BeHealthBackend.DataAccess.Repositories.Interfaces;
 using BeHealthBackend.DTOs.ClinicDtoFolder;
 
 namespace BeHealthBackend.Services.ClinicServices;
+
 public class ClinicService : IClinicService
 {
-    private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
+    private readonly IUnitOfWork _unitOfWork;
 
     public ClinicService(IUnitOfWork unitOfWork, IMapper mapper)
     {
         _unitOfWork = unitOfWork;
         _mapper = mapper;
     }
+
     public async Task<IEnumerable<ClinicDto>> GetClinicAsync()
     {
         var clinics = await _unitOfWork.ClinicRepository
@@ -28,7 +30,7 @@ public class ClinicService : IClinicService
     public async Task<ClinicDto> GetIdAsync(int id)
     {
         var clinic = await _unitOfWork.ClinicRepository
-            .GetAsync(c => c.Id == id, includeProperties: "Address");
+            .GetAsync(c => c.Id == id, "Address");
 
         if (clinic is null)
             throw new NotFoundApiException(nameof(ClinicDto), id.ToString());

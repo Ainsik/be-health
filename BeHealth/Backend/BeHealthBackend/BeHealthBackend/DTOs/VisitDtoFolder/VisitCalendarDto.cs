@@ -1,4 +1,5 @@
 ﻿namespace BeHealthBackend.DTOs.VisitDtoFolder;
+
 public class VisitCalendarDto
 {
     public int Day { get; set; }

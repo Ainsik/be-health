@@ -1,22 +1,23 @@
 ﻿using AutoMapper;
 using BeHealthBackend.DataAccess.Repositories.Interfaces;
-using BeHealthBackend.Services.ReferralService;
 using BeHealthBackend.DTOs.ReferralDtoFolder;
 
-namespace BeHealthBackend.Services.ReferralsServices;
+namespace BeHealthBackend.Services.ReferralServices;
+
 public class ReferralService : IReferralService
 {
-    private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
+    private readonly IUnitOfWork _unitOfWork;
 
     public ReferralService(IUnitOfWork unitOfWork, IMapper mapper)
     {
         _unitOfWork = unitOfWork;
         _mapper = mapper;
     }
+
     public async Task<IEnumerable<ReferralDto>> GetIdAsync(int id)
     {
-       var referrals = await _unitOfWork.ReferralRepository
+        var referrals = await _unitOfWork.ReferralRepository
             .GetAllAsync(r => r.PatientId == id, includeProperties: "Patient");
 
         var referralsDto = referrals.Select(r => new ReferralDto
@@ -27,10 +28,9 @@ public class ReferralService : IReferralService
             Date = new DateTimeOffset(r.Created).ToUnixTimeSeconds(),
             Specialist = r.Specialist,
             Description = r.Description,
-            Code = r.Code,
-
+            Code = r.Code
         });
 
-       return referralsDto;
+        return referralsDto;
     }
 }

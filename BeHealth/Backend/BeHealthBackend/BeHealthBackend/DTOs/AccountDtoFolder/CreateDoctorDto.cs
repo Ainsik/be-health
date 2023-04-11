@@ -1,4 +1,5 @@
 ﻿namespace BeHealthBackend.DTOs.AccountDtoFolder;
+
 public class CreateDoctorDto
 {
     public string FirstName { get; set; }

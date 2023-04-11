@@ -1,7 +1,8 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using System.Text;
+﻿using System.Text;
+using Microsoft.IdentityModel.Tokens;
 
 namespace BeHealthBackend.Configurations.Extensions;
+
 public static class WebApplicationBuilderAddAuthenticationExtension
 {
     public static WebApplicationBuilder AddAuthentication(this WebApplicationBuilder builder)

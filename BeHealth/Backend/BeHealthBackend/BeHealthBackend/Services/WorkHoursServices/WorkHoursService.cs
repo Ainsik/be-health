@@ -3,62 +3,60 @@ using BeHealthBackend.DataAccess.Entities;
 using BeHealthBackend.DataAccess.Repositories.Interfaces;
 using BeHealthBackend.DTOs.WorkHoursDtoFolder;
 
-namespace BeHealthBackend.Services.WorkHoursServices
+namespace BeHealthBackend.Services.WorkHoursServices;
+
+public class WorkHoursService : IWorkHoursService
 {
-    public class WorkHoursService : IWorkHoursService
+    private readonly IMapper _mapper;
+    private readonly IUnitOfWork _unitOfWork;
+
+    public WorkHoursService(IUnitOfWork unitOfWork, IMapper mapper)
     {
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
+        _unitOfWork = unitOfWork;
+        _mapper = mapper;
+    }
 
-        public WorkHoursService(IUnitOfWork unitOfWork, IMapper mapper)
+    public async Task<(int, CreateWorkHoursDto)> CreateAsync(CreateWorkHoursDto workHoursDto)
+    {
+        var workHours = new WorkHours
         {
-            _unitOfWork = unitOfWork;
-            _mapper = mapper;
-        }
+            DoctorId = workHoursDto.DoctorId,
+            Day = workHoursDto.Day,
+            StartHour = workHoursDto.StartHour,
+            EndHour = workHoursDto.EndHour
+        };
 
-        public async Task<(int, CreateWorkHoursDto)> CreateAsync(CreateWorkHoursDto workHoursDto)
+        await _unitOfWork.WorkHoursRepository.AddAsync(workHours);
+        await _unitOfWork.SaveAsync();
+
+        var createdWorkHoursDto = new CreateWorkHoursDto
         {
-            var workHours = new WorkHours
-            {
-                DoctorId = workHoursDto.DoctorId,
-                Day = workHoursDto.Day,
-                StartHour = workHoursDto.StartHour,
-                EndHour = workHoursDto.EndHour
-            };
+            DoctorId = workHours.DoctorId,
+            Day = workHours.Day,
+            StartHour = workHours.StartHour,
+            EndHour = workHours.EndHour
+        };
 
-            await _unitOfWork.WorkHoursRepository.AddAsync(workHours);
-            await _unitOfWork.SaveAsync();
+        return (workHours.Id, createdWorkHoursDto);
+    }
 
-            var createdWorkHoursDto = new CreateWorkHoursDto
-            {
-                DoctorId = workHours.DoctorId,
-                Day = workHours.Day,
-                StartHour = workHours.StartHour,
-                EndHour = workHours.EndHour
-            };
+    public async Task<IEnumerable<WorkHoursDto>> GetWorkHoursByDoctorIdAsync(int id)
+    {
+        var workHours = await _unitOfWork.WorkHoursRepository.GetAllAsync(
+            h => h.DoctorId.Equals(id),
+            hours => hours.OrderBy(h => h.Day));
 
-            return (workHours.Id, createdWorkHoursDto);
-        }
-
-        public async Task<IEnumerable<WorkHoursDto>> GetWorkHoursByDoctorIdAsync(int id)
-        {
-            var workHours = await _unitOfWork.WorkHoursRepository.GetAllAsync(
-                filter: h => h.DoctorId.Equals(id),
-                orderBy: hours => hours.OrderBy(h => h.Day));
-
-            var workHoursDto = workHours.Select(h => new WorkHoursDto
+        var workHoursDto = workHours.Select(h => new WorkHoursDto
             {
                 Id = h.Id,
                 DoctorId = h.DoctorId,
                 Day = h.Day,
                 StartHour = h.StartHour,
-                EndHour = h.EndHour,
+                EndHour = h.EndHour
             }
         );
 
 
-            return workHoursDto;
-
-        }
+        return workHoursDto;
     }
 }

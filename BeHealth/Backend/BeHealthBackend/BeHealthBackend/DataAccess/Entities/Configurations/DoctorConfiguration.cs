@@ -13,14 +13,11 @@ public class DoctorConfiguration : IEntityTypeConfiguration<Doctor>
                 dp => dp.HasOne(p => p.Patient)
                     .WithMany()
                     .HasForeignKey(dp => dp.PatientId),
-        dp => dp.HasOne(d => d.Doctor)
+                dp => dp.HasOne(d => d.Doctor)
                     .WithMany()
                     .HasForeignKey(dp => dp.DoctorId)
                     .OnDelete(DeleteBehavior.ClientCascade),
-        dp =>
-                {
-                    dp.HasKey(x => new { x.PatientId, x.DoctorId });
-                }
+                dp => { dp.HasKey(x => new { x.PatientId, x.DoctorId }); }
             );
 
         builder.Property(d => d.FirstName)

@@ -1,25 +1,24 @@
 ﻿using BeHealthBackend.DataAccess.DbContexts;
 using BeHealthBackend.DataAccess.Entities;
-using BeHealthBackend.DataAccess.Repositories.Interfaces;
+using BeHealthBackend.DataAccess.Entities.Validators;
 using BeHealthBackend.DataAccess.Repositories;
+using BeHealthBackend.DataAccess.Repositories.Interfaces;
+using BeHealthBackend.DTOs.AccountDtoFolder;
+using BeHealthBackend.DTOs.ImageDto;
 using BeHealthBackend.Services.ClinicServices;
 using BeHealthBackend.Services.DoctorServices;
+using BeHealthBackend.Services.FileServices;
 using BeHealthBackend.Services.PatientServices;
+using BeHealthBackend.Services.RecipeServices;
+using BeHealthBackend.Services.ReferralServices;
 using BeHealthBackend.Services.VisitServices;
+using BeHealthBackend.Services.WorkHoursServices;
 using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using BeHealthBackend.DataAccess.Entities.Validators;
-using BeHealthBackend.DTOs.AccountDtoFolder;
-using BeHealthBackend.Services.ReferralService;
-using BeHealthBackend.Services.ReferralsServices;
-using BeHealthBackend.Services.RecipeService;
-using BeHealthBackend.Services.RecipeServices;
-using BeHealthBackend.DTOs.ImageDto;
-using BeHealthBackend.Services.FileServices;
-using BeHealthBackend.Services.WorkHoursServices;
 
 namespace BeHealthBackend.Configurations.Extensions;
+
 public static class WebApplicationBuilderAddPersistenceExtension
 {
     public static WebApplicationBuilder AddPersistence(this WebApplicationBuilder builder)

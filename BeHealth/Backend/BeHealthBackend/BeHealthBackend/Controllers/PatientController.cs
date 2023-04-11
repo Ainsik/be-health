@@ -5,7 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BeHealthBackend.Controllers;
 
-[ApiController, Route("/api/patients")]
+[ApiController]
+[Route("/api/patients")]
 [Authorize(Roles = "Doctor")]
 public class PatientController : ControllerBase
 {

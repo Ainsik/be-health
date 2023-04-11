@@ -1,9 +1,10 @@
-﻿using BeHealthBackend.DataAccess.DbContexts;
+﻿using System.Text.RegularExpressions;
+using BeHealthBackend.DataAccess.DbContexts;
 using BeHealthBackend.DTOs.AccountDtoFolder;
 using FluentValidation;
-using System.Text.RegularExpressions;
 
 namespace BeHealthBackend.DataAccess.Entities.Validators;
+
 public class CreateDoctorDtoValidator : AbstractValidator<CreateDoctorDto>
 {
     public CreateDoctorDtoValidator(BeHealthContext dbContext)
@@ -26,10 +27,7 @@ public class CreateDoctorDtoValidator : AbstractValidator<CreateDoctorDto>
             .Custom((value, context) =>
             {
                 var emailInUse = dbContext.Patients.Any(d => d.Email == value);
-                if (emailInUse)
-                {
-                    context.AddFailure("Email", "That email is taken.");
-                }
+                if (emailInUse) context.AddFailure("Email", "That email is taken.");
             });
 
         RuleFor(x => x.City)

@@ -1,6 +1,7 @@
 ﻿using BeHealthBackend.DTOs.ClinicDtoFolder;
 
 namespace BeHealthBackend.Services.ClinicServices;
+
 public interface IClinicService
 {
     Task<IEnumerable<ClinicDto>> GetClinicAsync();

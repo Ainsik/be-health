@@ -1,4 +1,5 @@
 ﻿namespace BeHealthBackend.DTOs.VisitDtoFolder;
+
 public class VisitUserDTO
 {
     public int Id { get; set; }

@@ -1,4 +1,5 @@
 ﻿namespace BeHealthBackend.DataAccess.Entities;
+
 public class ClinicPatient
 {
     public int PatientId { get; set; }

@@ -1,4 +1,5 @@
 ﻿namespace BeHealthBackend.DTOs.VisitDtoFolder;
+
 public class PutVisitDto
 {
     public string Name { get; set; }

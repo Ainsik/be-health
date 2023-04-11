@@ -1,8 +1,9 @@
-﻿using BeHealthBackend.DTOs.AccountDtoFolder;
+﻿using System.Security.Claims;
+using BeHealthBackend.DTOs.AccountDtoFolder;
 using BeHealthBackend.DTOs.DoctorDtoFolder;
-using System.Security.Claims;
 
 namespace BeHealthBackend.Services.DoctorServices;
+
 public interface IDoctorService
 {
     Task<IEnumerable<DoctorDto>> GetDoctorsAsync();

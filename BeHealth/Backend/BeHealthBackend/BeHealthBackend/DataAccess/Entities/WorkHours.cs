@@ -1,4 +1,5 @@
 ﻿namespace BeHealthBackend.DataAccess.Entities;
+
 public class WorkHours
 {
     public int Id { get; set; }

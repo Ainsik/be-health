@@ -1,4 +1,5 @@
 ﻿namespace BeHealthBackend.DataAccess.Entities;
+
 public abstract class Person
 {
     public int Id { get; set; }
@@ -9,6 +10,6 @@ public abstract class Person
     public int AddressId { get; set; }
     public virtual Address Address { get; set; }
     public DateTime Created { get; }
-    public virtual List<Visit> Visits { get; set; } = new List<Visit>();
+    public virtual List<Visit> Visits { get; set; } = new();
     public string PasswordHash { get; set; }
 }

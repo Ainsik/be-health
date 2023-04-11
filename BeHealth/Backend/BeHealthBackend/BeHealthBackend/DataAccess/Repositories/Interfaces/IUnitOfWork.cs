@@ -1,6 +1,4 @@
-﻿using BeHealthBackend.DataAccess.Entities;
-
-namespace BeHealthBackend.DataAccess.Repositories.Interfaces;
+﻿namespace BeHealthBackend.DataAccess.Repositories.Interfaces;
 
 public interface IUnitOfWork : IDisposable
 {

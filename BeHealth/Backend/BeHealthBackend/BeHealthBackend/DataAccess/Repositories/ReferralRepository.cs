@@ -11,4 +11,3 @@ public class ReferralRepository : Repository<Referral>, IReferralRepository
         DbSet = context.Referrals;
     }
 }
-

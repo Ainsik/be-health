@@ -1,10 +1,11 @@
 ﻿using BeHealthBackend.DTOs.RecipeDtoFolder;
-using BeHealthBackend.Services.RecipeService;
+using BeHealthBackend.Services.RecipeServices;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BeHealthBackend.Controllers;
 
-[ApiController, Route("/api/recipes")]
+[ApiController]
+[Route("/api/recipes")]
 //[Authorize(Roles = "Patient")]
 public class RecipeController : ControllerBase
 {
@@ -21,5 +22,4 @@ public class RecipeController : ControllerBase
         var recipes = await _recipeService.GetIdAsync(id);
         return Ok(recipes);
     }
-
 }

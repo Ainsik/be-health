@@ -1,6 +1,5 @@
-﻿using BeHealthBackend.DataAccess.Entities;
+﻿namespace BeHealthBackend.DTOs.ClinicDtoFolder;
 
-namespace BeHealthBackend.DTOs.ClinicDtoFolder;
 public class ClinicDoctorDto
 {
     public string Name { get; set; }

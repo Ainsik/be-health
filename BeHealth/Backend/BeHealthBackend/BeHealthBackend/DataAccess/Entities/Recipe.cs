@@ -1,4 +1,5 @@
 ﻿namespace BeHealthBackend.DataAccess.Entities;
+
 public class Recipe
 {
     public int Id { get; set; }

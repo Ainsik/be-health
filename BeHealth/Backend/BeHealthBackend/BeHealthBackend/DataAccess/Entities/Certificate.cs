@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations.Schema;
 namespace BeHealthBackend.DataAccess.Entities;
 
 public class Certificate

@@ -1,5 +1,4 @@
-﻿using BeHealthBackend.DataAccess.Entities;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 
 namespace BeHealthBackend.DataAccess.Repositories.Interfaces;
 
@@ -9,10 +8,13 @@ public interface IRepository<T> where T : class
         Expression<Func<T, bool>>? filter = null,
         Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
         string? includeProperties = null);
+
     Task<T?> GetAsync(int id);
+
     Task<T?> GetAsync(
         Expression<Func<T, bool>>? filter = null,
         string? includeProperties = null);
+
     Task AddAsync(T entity);
     Task AddRangeAsync(IEnumerable<T> entities);
     void Modify(T entity);

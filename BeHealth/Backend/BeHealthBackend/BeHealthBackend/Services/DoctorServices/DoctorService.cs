@@ -14,17 +14,19 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 
 namespace BeHealthBackend.Services.DoctorServices;
+
 public class DoctorService : IDoctorService
 {
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IMapper _mapper;
-    private readonly IPasswordHasher<Doctor> _passwordHasher;
-    private readonly BeHealthContext _context;
     private readonly AuthenticationSettings _authenticationSettings;
     private readonly IAuthorizationService _authorizationService;
+    private readonly BeHealthContext _context;
+    private readonly IMapper _mapper;
+    private readonly IPasswordHasher<Doctor> _passwordHasher;
+    private readonly IUnitOfWork _unitOfWork;
 
     public DoctorService(IUnitOfWork unitOfWork, IMapper mapper, IPasswordHasher<Doctor> passwordHasher,
-        BeHealthContext context, AuthenticationSettings authenticationSettings, IAuthorizationService authorizationService)
+        BeHealthContext context, AuthenticationSettings authenticationSettings,
+        IAuthorizationService authorizationService)
     {
         _unitOfWork = unitOfWork;
         _mapper = mapper;
@@ -57,7 +59,7 @@ public class DoctorService : IDoctorService
     public async Task<DoctorDto> GetIdAsync(int id)
     {
         var doctor = await _unitOfWork.DoctorRepository
-            .GetAsync(d => d.Id == id, includeProperties: "Address");
+            .GetAsync(d => d.Id == id, "Address");
 
         if (doctor is null)
             throw new NotFoundApiException(nameof(DoctorDto), id.ToString());
@@ -127,11 +129,11 @@ public class DoctorService : IDoctorService
         if (result == PasswordVerificationResult.Failed)
             throw new BadRequestException("Invalid username or password");
 
-        var claims = new List<Claim>()
+        var claims = new List<Claim>
         {
-            new (ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new (ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
-            new (ClaimTypes.Role, $"{user.Role}")
+            new(ClaimTypes.NameIdentifier, user.Id.ToString()),
+            new(ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
+            new(ClaimTypes.Role, $"{user.Role}")
         };
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_authenticationSettings.JwtKey));

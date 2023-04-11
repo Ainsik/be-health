@@ -4,7 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BeHealthBackend.Controllers;
 
-[ApiController, Route("/api/clinics")]
+[ApiController]
+[Route("/api/clinics")]
 public class ClinicController : ControllerBase
 {
     private readonly IClinicService _clinicService;
@@ -13,6 +14,7 @@ public class ClinicController : ControllerBase
     {
         _clinicService = clinicService;
     }
+
     [HttpGet]
     public async Task<ActionResult<IEnumerable<ClinicDto>>> GetAllClinicsAsync()
     {

@@ -1,6 +1,7 @@
 ﻿using NLog.Web;
 
 namespace BeHealthBackend.Configurations.Extensions;
+
 public static class WebApplicationBuilderAddLoggingExtension
 {
     public static WebApplicationBuilder AddLogger(this WebApplicationBuilder builder)

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 
 namespace BeHealthBackend.Authorization;
+
 public enum ResourceOperation
 {
     Create,
@@ -8,11 +9,13 @@ public enum ResourceOperation
     Update,
     Delete
 }
+
 public class ResourceOperationRequirement : IAuthorizationRequirement
 {
-    public ResourceOperation ResourceOperation { get; }
     public ResourceOperationRequirement(ResourceOperation resourceOperation)
     {
         ResourceOperation = resourceOperation;
     }
+
+    public ResourceOperation ResourceOperation { get; }
 }

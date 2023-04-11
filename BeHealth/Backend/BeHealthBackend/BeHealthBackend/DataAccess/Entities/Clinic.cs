@@ -1,4 +1,5 @@
 ﻿namespace BeHealthBackend.DataAccess.Entities;
+
 public class Clinic
 {
     public int Id { get; set; }
@@ -6,6 +7,6 @@ public class Clinic
     public string Description { get; set; }
     public int AddressId { get; set; }
     public virtual Address Address { get; set; }
-    public virtual List<Doctor> Doctors { get; set; } = new List<Doctor>();
-    public virtual List<Patient> Patients { get; set; } = new List<Patient>();
+    public virtual List<Doctor> Doctors { get; set; } = new();
+    public virtual List<Patient> Patients { get; set; } = new();
 }

@@ -3,13 +3,12 @@ using BeHealthBackend.DataAccess.Entities;
 using BeHealthBackend.DataAccess.Repositories.Interfaces;
 using BeHealthBackend.DTOs.VisitDtoFolder;
 
-
 namespace BeHealthBackend.Services.VisitServices;
 
 public class VisitsService : IVisitsService
 {
-    private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
+    private readonly IUnitOfWork _unitOfWork;
 
     public VisitsService(IUnitOfWork unitOfWork, IMapper mapper)
     {
@@ -48,9 +47,8 @@ public class VisitsService : IVisitsService
             DoctorId = visit.DoctorId,
             PatientId = visit.PatientId,
             VisitDate = visit.VisitDate,
-            Duration = visit.Duration,
+            Duration = visit.Duration
         };
-
 
 
         await _unitOfWork.VisitRepository.AddAsync(visit);
@@ -80,20 +78,20 @@ public class VisitsService : IVisitsService
     public async Task<IEnumerable<VisitDTO>> GetVisitsByDoctorIdAsync(int id)
     {
         var visits = await _unitOfWork.VisitRepository.GetAllAsync(
-            filter: v => v.DoctorId.Equals(id),
-            orderBy: visits => visits.OrderBy(v => v.VisitDate),
-            includeProperties: "Patient");
+            v => v.DoctorId.Equals(id),
+            visits => visits.OrderBy(v => v.VisitDate),
+            "Patient");
 
         var visitsDTO = visits.Select(v => new VisitDTO
-        {
-            Id = v.Id,
-            Duration = v.Duration,
-            PatientId = v.PatientId,
-            Patient = $"{v.Patient.FirstName} {v.Patient.LastName}",
-            Treatment = v.Name,
-            Confirmed = v.Confirmed,
-            StartDate = new DateTimeOffset(v.VisitDate).ToUnixTimeSeconds(),
-        }
+            {
+                Id = v.Id,
+                Duration = v.Duration,
+                PatientId = v.PatientId,
+                Patient = $"{v.Patient.FirstName} {v.Patient.LastName}",
+                Treatment = v.Name,
+                Confirmed = v.Confirmed,
+                StartDate = new DateTimeOffset(v.VisitDate).ToUnixTimeSeconds()
+            }
         );
 
         return visitsDTO;
@@ -102,19 +100,19 @@ public class VisitsService : IVisitsService
     public async Task<IEnumerable<VisitUserDTO>> GetVisitsByUserIdAsync(int id)
     {
         var visits = await _unitOfWork.VisitRepository.GetAllAsync(
-            filter: v => v.PatientId.Equals(id),
-            orderBy: visits => visits.OrderBy(v => v.VisitDate),
-            includeProperties: "Doctor");
+            v => v.PatientId.Equals(id),
+            visits => visits.OrderBy(v => v.VisitDate),
+            "Doctor");
 
         var visitsDTO = visits.Select(v => new VisitUserDTO
-        {
-            Id = v.Id,
-            Duration = v.Duration,
-            DoctorId = v.DoctorId,
-            Doctor = $"{v.Doctor.FirstName} {v.Doctor.LastName}",
-            Treatment = v.Name,
-            StartDate = new DateTimeOffset(v.VisitDate).ToUnixTimeSeconds(),
-        }
+            {
+                Id = v.Id,
+                Duration = v.Duration,
+                DoctorId = v.DoctorId,
+                Doctor = $"{v.Doctor.FirstName} {v.Doctor.LastName}",
+                Treatment = v.Name,
+                StartDate = new DateTimeOffset(v.VisitDate).ToUnixTimeSeconds()
+            }
         );
 
         return visitsDTO;
@@ -129,7 +127,7 @@ public class VisitsService : IVisitsService
     {
         var doctor = await _unitOfWork.DoctorRepository.GetAsync(visitDto.DoctorId);
         var patient = await _unitOfWork.DoctorRepository.GetAsync(visitDto.PatientId);
-        if (doctor == null || patient == null) { return null; }
+        if (doctor == null || patient == null) return null;
 
         var dbVisit = await _unitOfWork.VisitRepository.GetAsync(id);
         if (dbVisit == null) return null;
