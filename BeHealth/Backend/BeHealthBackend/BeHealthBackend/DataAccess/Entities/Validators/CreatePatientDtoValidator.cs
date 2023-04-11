@@ -11,11 +11,11 @@ public class CreatePatientDtoValidator : AbstractValidator<CreatePatientDto>
     {
         RuleFor(x => x.FirstName)
             .NotEmpty()
-            .MaximumLength(20);
+            .MaximumLength(30);
 
         RuleFor(x => x.LastName)
             .NotEmpty()
-            .MaximumLength(30);
+            .MaximumLength(50);
 
         RuleFor(x => x.PhoneNumber)
             .Matches(new Regex("\\d{9}"));
