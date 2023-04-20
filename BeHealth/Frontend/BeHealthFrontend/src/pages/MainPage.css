@@ -1,0 +1,17 @@
+main.main--page section.split {
+    margin-block-start: 2rem;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    justify-content: center;
+}
+
+main.main--page .section--title {
+    font-weight: 700;
+    font-size: 64px;
+}
+
+main.main--page .section--text {
+    font-weight: 600;
+    font-size: 25px;
+}
