@@ -84,6 +84,56 @@ main.main--page .partners--badge>img {
     mix-blend-mode: darken;
 }
 
+main.main--page .benefits--badge {
+    width: 416px;
+    height: 292px;
+
+    padding: 15px 20px;
+    background: #FFFFFF;
+    border-left: 4px solid #7B86E6;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+main.main--page .benefits--badge>h3 {
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 38px;
+
+    color: #5A67E0;
+}
+
+
+main.main--page .benefits--badge-item {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-block-end: 1rem;
+}
+
+
+main.main--page .benefits--badge .benefit--number {
+    font-weight: 400;
+    min-width: 75px;
+    font-size: 60px;
+    line-height: 90px;
+
+    color: #F1F1F1;
+}
+
+main.main--page .benefits--badge .benefit--item-title {
+    font-weight: 500;
+    font-size: 15px;
+}
+
+main.main--page .benefits--badge .benefit--item-text {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 20px;
+    color: #BEBEBE;
+}
+
+
 @media screen and (max-width: 1150px) {
     main.main--page .section--title {
         font-weight: 700;

@@ -51,10 +51,45 @@ const About = () => {
   )
 }
 
+const BenefitsBadge = () => {
+  return (
+    <div className="benefits--badge">
+      <h3>Zalety</h3>
+      <div className="benefits--badge-item">
+        <div className="text">
+          <h4 className="benefit--item-title">Współpracujemy tylko z najlepszymi</h4>
+          <p className="benefit--item-text">Nasi lekarze są regularnie kontrolowani pod kątem wiedzy i umiejętności, a także stale podnoszą swoje kwalifikacje.</p>
+        </div>
+        <p className="benefit--number">01</p>
+      </div>
+      <div className="benefits--badge-item">
+        <div className="text">
+          <h4 className="benefit--item-title">Pacjenci otrzymują usługę bezpłatnie</h4>
+          <p className="benefit--item-text">Pacjenci mogą korzystać z naszych usług bez dodatkowych kosztów</p>
+        </div>
+        <p className="benefit--number">02</p>
+      </div>
+    </div>
+  )
+}
+
+const Benefits = () => {
+  return (
+    <section id="benefits--section" className="split">
+      <div className="section--left">
+        <BenefitsBadge />
+      </div>
+      <div className="section--right">
+      </div>
+    </section>
+  )
+}
+
 export const MainPage = () => {
   return (
     <main className="main--page">
       <About />
+      <Benefits />
     </main>
   )
 }
