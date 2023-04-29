@@ -4,6 +4,20 @@ import DoctorImage from "../assets/images/doctorWithCircleBackgound.png"
 import SampleDoctor1 from "../assets/images/Specialist 1.png"
 import SampleDoctor2 from "../assets/images/Specialist 2.png"
 import SampleDoctor3 from "../assets/images/Specialist 3.png"
+import Medicover from "../assets/images/medicover.png"
+import Scanmed from "../assets/images/scanmed.png"
+import Zdziecko from "../assets/images/zdziecko.png"
+
+const PartnersBadge = () => {
+  return (
+    <div className="partners--badge">
+      <div className="partners--badge-color"></div>
+      <img src={Medicover} alt="" />
+      <img src={Scanmed} alt="" />
+      <img src={Zdziecko} alt="" />
+    </div>
+  )
+}
 
 const DoctorsBadge = () => {
   return (
@@ -20,17 +34,20 @@ const DoctorsBadge = () => {
 
 const About = () => {
   return (
-    <section id="about--section" className="split">
-      <div className="section--left">
-        <h1 className="section--title">Znajdź lekarza<br />& zarezerwuj online</h1>
-        <p className="section--text">Szybki i łatwy dostęp do opieki zdrowotnej na wyciągnięcie ręki</p>
-        <PrimaryButton style={{ marginBlockStart: 40 }}><p style={{ color: "white", marginInline: 70, marginBlock: 5 }}>Zarezerwuj wizytę</p></PrimaryButton>
-      </div>
-      <div className="section--right">
-        <img id="doctor--image" src={DoctorImage} alt="Male doctor looks at camera and smiles" />
-        <DoctorsBadge />
-      </div>
-    </section>
+    <>
+      <section id="about--section" className="split">
+        <div className="section--left">
+          <h1 className="section--title">Znajdź lekarza<br />& zarezerwuj online</h1>
+          <p className="section--text">Szybki i łatwy dostęp do opieki zdrowotnej na wyciągnięcie ręki</p>
+          <PrimaryButton style={{ marginBlockStart: 40 }}><p style={{ color: "white", marginInline: 70, marginBlock: 5 }}>Zarezerwuj wizytę</p></PrimaryButton>
+          <PartnersBadge />
+        </div>
+        <div className="section--right">
+          <img id="doctor--image" src={DoctorImage} alt="Male doctor looks at camera and smiles" />
+          <DoctorsBadge />
+        </div>
+      </section>
+    </>
   )
 }
 
