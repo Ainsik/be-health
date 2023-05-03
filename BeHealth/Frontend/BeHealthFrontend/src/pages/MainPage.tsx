@@ -9,6 +9,14 @@ import Scanmed from "../assets/images/scanmed.png"
 import Zdziecko from "../assets/images/zdziecko.png"
 import BenefitsDoctor from "../assets/images/benefitsDoctor.png"
 import { BsCheckLg } from "react-icons/bs"
+import dermatolog from "../assets/images/specializacje/dermatolog.png"
+import gastrolog from "../assets/images/specializacje/gastrolog.png"
+import ginekolog from "../assets/images/specializacje/ginekolog.png"
+import hematolog from "../assets/images/specializacje/hematolog.png"
+import hepatolog from "../assets/images/specializacje/hepatolog.png"
+import kardiolog from "../assets/images/specializacje/kardiolog.png"
+import laryngolog from "../assets/images/specializacje/laryngolog.png"
+import neurolog from "../assets/images/specializacje/neurolog.png"
 
 const PartnersBadge = () => {
   return (
@@ -97,11 +105,45 @@ const Benefits = () => {
   )
 }
 
+const SpecialistGrid = () => {
+  return (
+    <div className="specialist--grid">
+      <SpecialistBadge image={dermatolog} />
+      <SpecialistBadge image={gastrolog} />
+      <SpecialistBadge image={ginekolog} />
+      <SpecialistBadge image={hematolog} />
+      <SpecialistBadge image={hepatolog} />
+      <SpecialistBadge image={kardiolog} />
+      <SpecialistBadge image={laryngolog} />
+      <SpecialistBadge image={neurolog} />
+    </div>
+  )
+}
+
+const SpecialistBadge = (props: { image: string }) => {
+  return (
+    <div className="specialist--badge">
+      <img src={props.image} alt="" />
+    </div>
+  )
+}
+
+const Specialists = () => {
+  return (
+    <section id="specialists--section">
+      <h1 className="section--title">Najczęściej wybierane<br />kierunki</h1>
+      <p className="section--text">Nasz serwis współpracuje z lekarzami z różnych specjalności, dzięki <br /> czemu jesteśmy w stanie zaoferować szerokie spektrum usług <br /> medycznych.</p>
+      <SpecialistGrid />
+      </section>
+  )
+}
+
 export const MainPage = () => {
   return (
     <main className="main--page">
       <About />
       <Benefits />
+      <Specialists />
     </main>
   )
 }

@@ -183,6 +183,47 @@ main.main--page #benefits--section li svg {
     fill: #5A67E0;
 }
 
+main.main--page #specialists--section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main.main--page #specialists--section .section--title, main.main--page #specialists--section .section--text {
+    text-align: center;
+}
+
+main.main--page #specialists--section .section--title {
+    font-weight: 700;
+    font-size: 50px;
+}
+
+main.main--page #specialists--section .section--text {
+    font-weight: 400;
+    font-size: 18px;
+    margin-block-start: 40px;
+}
+
+main.main--page #specialists--section .specialist--badge {
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #B9B9B9;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+main.main--page #specialists--section  img {
+    max-width: 100%;
+}
+
+main.main--page #specialists--section .specialist--grid {
+    display: grid;
+    grid-template-columns: repeat(4, 180px);
+    gap: 45px;
+    margin-block-start: 70px;
+}
+
 @media screen and (max-width: 1150px) {
     main.main--page .section--title {
         font-weight: 700;
