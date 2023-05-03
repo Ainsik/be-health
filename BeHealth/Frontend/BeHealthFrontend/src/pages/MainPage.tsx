@@ -7,6 +7,8 @@ import SampleDoctor3 from "../assets/images/Specialist 3.png"
 import Medicover from "../assets/images/medicover.png"
 import Scanmed from "../assets/images/scanmed.png"
 import Zdziecko from "../assets/images/zdziecko.png"
+import BenefitsDoctor from "../assets/images/benefitsDoctor.png"
+import { BsCheckLg } from "react-icons/bs"
 
 const PartnersBadge = () => {
   return (
@@ -77,9 +79,19 @@ const Benefits = () => {
   return (
     <section id="benefits--section" className="split">
       <div className="section--left">
+        <img src={BenefitsDoctor} />
         <BenefitsBadge />
       </div>
       <div className="section--right">
+        <p className="benefits--green-badge">Dlaczego my</p>
+        <h1 className="section--title">Jesteśmy <span className="purple">liderami</span><br /> na rynku ochrony <br /> zdrowia</h1>
+        <ul>
+          <li><BsCheckLg />Przyjęcie w dogodnym czasie</li>
+          <li><BsCheckLg />Konto osobowe</li>
+          <li><BsCheckLg />Ubezpieczenie dla dzieci i dorosłych</li>
+          <li><BsCheckLg />Wysoko wykwalifikowani specjaliści</li>
+        </ul>
+        <PrimaryButton style={{marginBlockStart: 30}}>Dowiedz się więcej</PrimaryButton>
       </div>
     </section>
   )

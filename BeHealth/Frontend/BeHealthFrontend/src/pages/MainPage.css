@@ -6,6 +6,10 @@ main.main--page section.split {
     justify-content: center;
 }
 
+main.main--page section {
+    margin-block-end: 200px;
+}
+
 main.main--page .section--title {
     font-weight: 700;
     font-size: 64px;
@@ -93,6 +97,9 @@ main.main--page .benefits--badge {
     border-left: 4px solid #7B86E6;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
+    position: relative;
+    margin-left: 70px;
+    margin-top: -90px;
 }
 
 main.main--page .benefits--badge>h3 {
@@ -133,6 +140,48 @@ main.main--page .benefits--badge .benefit--item-text {
     color: #BEBEBE;
 }
 
+main.main--page #benefits--section {
+    justify-content: space-between;
+    gap: 100px
+}
+
+main.main--page #benefits--section .section--right {
+    margin-inline-end: 100px;
+}
+
+
+main.main--page #benefits--section .benefits--green-badge {
+    background-color: #BDF3D2;
+    color: #48B373;
+    border-radius: 33px;
+    font-weight: 600;
+    width: 133px;
+    height: 27px;
+    text-align: center;
+    margin-block-start: -50px;
+}
+
+main.main--page #benefits--section ul {
+    list-style: none;
+    font-weight: 500;
+    line-height: 70px;
+}
+
+
+main.main--page #benefits--section li {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+
+main.main--page #benefits--section li svg {
+    border: #DEE1F9 solid 4px;
+    border-radius: 50%;
+    background-color: #DEE1F9;
+    scale: 2.0;
+    fill: #5A67E0;
+}
 
 @media screen and (max-width: 1150px) {
     main.main--page .section--title {
