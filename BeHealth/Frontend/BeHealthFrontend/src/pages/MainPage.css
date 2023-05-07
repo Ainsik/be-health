@@ -190,7 +190,8 @@ main.main--page #specialists--section {
     align-items: center;
 }
 
-main.main--page #specialists--section .section--title, main.main--page #specialists--section .section--text {
+main.main--page #specialists--section .section--title,
+main.main--page #specialists--section .section--text {
     text-align: center;
 }
 
@@ -213,7 +214,7 @@ main.main--page #specialists--section .specialist--badge {
     border-radius: 10px;
 }
 
-main.main--page #specialists--section  img {
+main.main--page #specialists--section img {
     max-width: 100%;
 }
 
@@ -222,6 +223,38 @@ main.main--page #specialists--section .specialist--grid {
     grid-template-columns: repeat(4, 180px);
     gap: 45px;
     margin-block-start: 70px;
+}
+
+main.main--page #reviews--section {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 130px;
+}
+
+main.main--page #reviews--section .reviews--badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 30px 65px;
+    background-color: #DEE1F9BF;
+    color: #606060;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    width: 500px;
+    scale: 0.8;
+}
+
+main.main--page #reviews--section .reviews--badge.primary {
+    color: initial;
+    background-color: white;
+    scale: 1.0;
+}
+
+main.main--page #reviews--section .reviews--grid {
+    display: flex;
+    gap: 10px;
 }
 
 @media screen and (max-width: 1150px) {

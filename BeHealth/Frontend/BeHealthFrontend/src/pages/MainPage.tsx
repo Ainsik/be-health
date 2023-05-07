@@ -99,7 +99,7 @@ const Benefits = () => {
           <li><BsCheckLg />Ubezpieczenie dla dzieci i dorosłych</li>
           <li><BsCheckLg />Wysoko wykwalifikowani specjaliści</li>
         </ul>
-        <PrimaryButton style={{marginBlockStart: 30}}>Dowiedz się więcej</PrimaryButton>
+        <PrimaryButton style={{ marginBlockStart: 30 }}>Dowiedz się więcej</PrimaryButton>
       </div>
     </section>
   )
@@ -134,7 +134,35 @@ const Specialists = () => {
       <h1 className="section--title">Najczęściej wybierane<br />kierunki</h1>
       <p className="section--text">Nasz serwis współpracuje z lekarzami z różnych specjalności, dzięki <br /> czemu jesteśmy w stanie zaoferować szerokie spektrum usług <br /> medycznych.</p>
       <SpecialistGrid />
-      </section>
+    </section>
+  )
+}
+
+const ReviewsBadge = (props: { text: string, author: string, primary: boolean }) => {
+  return (
+    <div className={`reviews--badge ${props.primary ? 'primary' : ''}`}>
+      <p className="review--text">{props.text}</p>
+      <b><p className="review--author">{props.author}</p></b>
+    </div>
+  )
+}
+
+const ReviewsGrid = () => {
+  return (
+    <div className="reviews--grid">
+      <ReviewsBadge text="Byłam bardzo zadowolona z wizyty u pana doktora. Okazał się bardzo miły i profesjonalny, a jego diagnoza była trafna i skuteczna. Na pewno polecę go swoim znajomym i z chęcią skorzystam z jego usług ponownie" author="Idalia Ada" primary={false} />
+      <ReviewsBadge text="Dr Maryna Wanessa to wspaniały lekarz, zawsze jest bardzo cierpliwy i uważnie słucha moich obaw i pytań.  Jestem bardzo zadowolona z opieki, jaką otrzymałam od dr Maryny Wanessy i polecam ją każdemu, kto szuka dobrego lekarza." author="Zuzanna Zbigniew" primary={true} />
+      <ReviewsBadge text="Odwiedziłam Panią doktor Janinę Karolinę i byłam zachwycona profesjonalizmem i empatią. Dzięki jej poradzie udało mi się szybko wyleczyć dolegliwość. Polecam Panią doktor jako wspaniałego specjalistę i cudowną osobę" author="Zuzanna Zbigniew" primary={false} />
+    </div>
+  )
+}
+
+const Reviews = () => {
+  return (
+    <section id="reviews--section">
+      <h1 className="section--title">Przed wizytą, zapoznaj się z <br /> <span className="purple">opiniami</span> innych pacjentów.</h1>
+      <ReviewsGrid />
+    </section>
   )
 }
 
@@ -144,6 +172,7 @@ export const MainPage = () => {
       <About />
       <Benefits />
       <Specialists />
+      <Reviews />
     </main>
   )
 }
