@@ -12,4 +12,5 @@ public abstract class Person
     public DateTime Created { get; }
     public virtual List<Visit> Visits { get; set; } = new();
     public string PasswordHash { get; set; }
+    public string AvatarUri { get; set; }
 }
