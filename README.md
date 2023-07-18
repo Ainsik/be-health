@@ -1,6 +1,6 @@
 # BeHealth - A doctor appointment booking system
 
-It's an appointment booking system for doctors. It's a web application built with ASP.NET Core and React. It uses Entity Framework Core for database access and Microsoft SQL Server for the database. Goal of this project is to help private doctors and clinics to manage their appointments and patients. With the help of this system, doctors can manage their appointments and patients easily. Patients can also book appointments with doctors and see their appointments.
+BeHealth is an appointment booking system dedicated for doctors. It's a webapplication built with ASP.NET Core and React. Entity Framework Core is used fordatabase access development and Microsoft SQL Server for the data storage. Goal of this project is to help private doctors and clinics to manage their appointments and patients. With the help of this system, doctors can manage their appointments and patients easily. Patients can also book appointments with doctors and see their appointments.
 
 ![BeHealth](https://i.imgur.com/WEVctzf.png)
 
